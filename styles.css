@@ -20,6 +20,7 @@
     --card-bg: #ffffff;
     --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --header-height: 73px;
 }
 
 body {
@@ -287,8 +288,8 @@ body {
 /* Email Styles */
 .email-container {
     display: grid;
-    grid-template-columns: 200px 1fr 400px;
-    height: calc(100vh - 73px);
+    grid-template-columns: 200px minmax(400px, 1fr) minmax(300px, 400px);
+    height: calc(100vh - var(--header-height));
 }
 
 .email-sidebar {
@@ -441,7 +442,7 @@ body {
     grid-template-columns: 1fr 350px;
     padding: 2rem;
     gap: 1.5rem;
-    height: calc(100vh - 73px);
+    height: calc(100vh - var(--header-height));
 }
 
 .video-main {
@@ -545,7 +546,7 @@ body {
     grid-template-columns: 1fr 350px;
     padding: 2rem;
     gap: 1.5rem;
-    height: calc(100vh - 73px);
+    height: calc(100vh - var(--header-height));
 }
 
 .streaming-main {

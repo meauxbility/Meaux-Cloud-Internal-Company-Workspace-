@@ -33,6 +33,19 @@ function initializeDateTime() {
         const today = new Date();
         dateElement.textContent = today.toLocaleDateString('en-US', options);
     }
+    
+    // Initialize calendar with current month
+    updateCalendarMonth();
+}
+
+// Update calendar to show current month
+function updateCalendarMonth() {
+    const calendarHeader = document.querySelector('.calendar-header h3');
+    if (calendarHeader) {
+        const today = new Date();
+        const options = { year: 'numeric', month: 'long' };
+        calendarHeader.textContent = today.toLocaleDateString('en-US', options);
+    }
 }
 
 // Initialize interactive elements
@@ -41,7 +54,13 @@ function initializeInteractions() {
     document.querySelectorAll('.email-star').forEach(star => {
         star.addEventListener('click', (e) => {
             e.stopPropagation();
-            star.textContent = star.textContent === '⭐' ? '☆' : '⭐';
+            if (star.dataset.starred === 'true') {
+                star.textContent = '☆';
+                star.dataset.starred = 'false';
+            } else {
+                star.textContent = '⭐';
+                star.dataset.starred = 'true';
+            }
         });
     });
 
@@ -182,13 +201,3 @@ function switchToView(viewName) {
         navItem.click();
     }
 }
-
-// Add some dynamic behavior for demo purposes
-setInterval(() => {
-    // Update online status indicator (simulated)
-    const statusElement = document.querySelector('.profile-status');
-    if (statusElement) {
-        // Keep it online in this demo
-        statusElement.textContent = '● Online';
-    }
-}, 5000);
